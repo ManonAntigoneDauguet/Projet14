@@ -1,0 +1,23 @@
+.createForm {
+    margin-bottom: 20px;
+}
+
+.createForm select {
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    height: 32px;
+    width: 230px;
+    padding: 0px 10px;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+}
+
+.createForm label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+.address {
+    margin-top: 10px;
+}
