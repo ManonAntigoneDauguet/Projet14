@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react"
+import DatePicker from "react-date-picker"
+import "react-date-picker/dist/DatePicker.css"
+import "react-calendar/dist/Calendar.css"
 import { Link } from 'react-router-dom'
 import data from "../../data/data.json"
 import Modal from "../../component/modal"
@@ -8,20 +11,20 @@ import style from "./home.module.css"
 function Home() {
   const firstName = useRef(null)
   const lastName = useRef(null)
-  const dateOfBirth = useRef(null)
-  const startDate = useRef(null)
   const department = useRef(null)
   const street = useRef(null)
   const city = useRef(null)
   const state = useRef(null)
   const zipCode = useRef(null)
   const [isModalVisible, updateIsModalVisible] = useState(false)
+  const [startDate, setStartDate] = useState()
+  const [dateOfBirth, setDateOfBirth] = useState()
 
   const mainInputList = [
     { "inputId": "first-name", "label": "First Name", "type": "text", "ref": firstName },
     { "inputId": "last-name", "label": "Last Name", "type": "text", "ref": lastName },
-    { "inputId": "date-of-birth", "label": "Date of Birth", "type": "text", "ref": dateOfBirth },
-    { "inputId": "start-date", "label": "Start Date", "type": "text", "ref": startDate }
+    { "inputId": "date-of-birth", "label": "Date of Birth", "type": "date", "ref": dateOfBirth, "setMethod": setDateOfBirth },
+    { "inputId": "start-date", "label": "Start Date", "type": "date", "ref": startDate, "setMethod": setStartDate }
   ]
 
   const addresseInputList = [
@@ -36,8 +39,8 @@ function Home() {
     const employee = {
       firstName: firstName.value,
       lastName: lastName.value,
-      dateOfBirth: dateOfBirth.value,
-      startDate: startDate.value,
+      dateOfBirth: dateOfBirth,
+      startDate: startDate,
       department: department.value,
       street: street.value,
       city: city.value,
@@ -60,10 +63,25 @@ function Home() {
 
         <form action="#" id="create-employee" className={style.createForm}>
 
-          {mainInputList.map(({ inputId, label, type, ref }) => (
+          {mainInputList.map(({ inputId, label, type, ref, setMethod }) => (
             <div key={inputId}>
               <label htmlFor={inputId}>{label}</label>
-              <input type={type} id={inputId} ref={ref} />
+              {type !== "date" ?
+                <input
+                  className={style.input}
+                  type={type}
+                  id={inputId}
+                  ref={ref}
+                />
+                : <DatePicker
+                  className={style.input}
+                  value={ref}
+                  clearIcon={null}
+                  calendarIcon={null}
+                  format="MM/dd/y"
+                  onChange={(date) => setMethod(date)}
+                />
+              }
             </div>
           ))}
 

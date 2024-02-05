@@ -21,3 +21,9 @@
 .address {
     margin-top: 10px;
 }
+
+.input {
+    box-sizing: border-box;
+    height: 22px;
+    width: 170px;
+}
