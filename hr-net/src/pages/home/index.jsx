@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react"
-import DatePicker from "react-date-picker"
-import "react-date-picker/dist/DatePicker.css"
-import "react-calendar/dist/Calendar.css"
-import Select from 'react-select'
-import { Link } from 'react-router-dom'
-import { formatsDepartmentList, formatsStates } from "../../services/dataFormatter.service"
-import Modal from "../../component/modal"
 import style from "./home.module.css"
+import { Link } from 'react-router-dom'
+// data
+import { formatsDepartmentList, formatsStates } from "../../services/dataFormatter.service"
+// components
+import CustomSelect from "../../component/CustomSelect"
+import CustomDatePicker from "../../component/CustomDatePicker"
+import Modal from "../../component/modal"
 
 
 function Home() {
@@ -40,8 +40,8 @@ function Home() {
     const employee = {
       firstName: firstName.current.value,
       lastName: lastName.current.value,
-      dateOfBirth: dateOfBirth,
-      startDate: startDate,
+      dateOfBirth: dateOfBirth.toDateString(),
+      startDate: startDate.toDateString(),
       department: department,
       street: street.current.value,
       city: city.value,
@@ -75,13 +75,9 @@ function Home() {
                   id={inputId}
                   ref={ref}
                 />
-                : <DatePicker
-                  className={style.input}
+                : <CustomDatePicker
                   value={ref}
-                  clearIcon={null}
-                  calendarIcon={null}
-                  format="MM/dd/y"
-                  onChange={(date) => setMethod(date)}
+                  setValue={setMethod}
                 />
               }
             </div>
@@ -95,12 +91,10 @@ function Home() {
                   <label htmlFor={inputId}>{label}</label>
                   {type !== "select" ?
                     <input id={inputId} type={type} ref={ref} />
-                    : <Select
-                      name={inputId}
-                      id={inputId}
+                    : <CustomSelect
+                      inputId={inputId}
                       options={formatsStates()}
-                      className={style.customSelect}
-                      onChange={(option) => setState(option)}
+                      setOption={setState}
                     />
                   }
                 </div>
@@ -111,12 +105,10 @@ function Home() {
           <label htmlFor="department">
             Department
           </label>
-          <Select
-            name="department"
-            id="department"
+          <CustomSelect
+            inputId="department"
             options={formatsDepartmentList()}
-            className={style.customSelect}
-            onChange={(option) => setDepartment(option)}
+            setOption={setDepartment}
           />
         </form>
         <button onClick={handleSubmit}>Save</button>
@@ -125,7 +117,6 @@ function Home() {
         <Modal methodeOff={() => updateIsModalVisible(false)} />
       }
     </React.Fragment>
-
   )
 }
 

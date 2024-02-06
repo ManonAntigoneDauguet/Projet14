@@ -2,16 +2,6 @@
     margin-bottom: 20px;
 }
 
-.select {
-    box-sizing: border-box;
-    background-color: #f0f0f0;
-    height: 32px;
-    width: 230px;
-    padding: 0px 10px;
-    border-radius: 3px;
-    border: 1px solid #aaa;
-}
-
 .createForm label {
     display: block;
     margin-top: 1rem;
@@ -26,9 +16,4 @@
     box-sizing: border-box;
     height: 22px;
     width: 170px;
-}
-
-.customSelect {
-    height: 32px;
-    width: 230px;
 }

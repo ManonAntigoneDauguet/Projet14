@@ -18,7 +18,6 @@ function formatsStates() {
     let formatedData = []
     for(let state of data.states) {
         let formatedDepartment = {
-            "id": state.id,
             "value": state.abbreviation,
             "label": state.name
         }
