@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { EmployeeListProvider } from './utils/context'
 // pages
 import Home from './pages/home'
 import EmployeeList from './pages/employeeList'
@@ -12,10 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/employee-list" element={<EmployeeList />} />
-      </Routes>
+      <EmployeeListProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/employee-list" element={<EmployeeList />} />
+        </Routes>
+      </EmployeeListProvider>
+
     </Router>
   </React.StrictMode>
 )

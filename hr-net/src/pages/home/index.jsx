@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import style from "./home.module.css"
 import { Link } from 'react-router-dom'
 // data
 import { formatsDepartmentList, formatsStates } from "../../services/dataFormatter.service"
+import { EmployeeListContext } from "../../utils/context"
 // components
 import CustomSelect from "../../component/CustomSelect"
 import CustomDatePicker from "../../component/CustomDatePicker"
@@ -20,6 +21,7 @@ function Home() {
   const [state, setState] = useState()
   const [department, setDepartment] = useState()
   const [isModalVisible, updateIsModalVisible] = useState(false)
+  const { addEmployee } = useContext(EmployeeListContext)
 
   const mainInputList = [
     { "inputId": "first-name", "label": "First Name", "type": "text", "ref": firstName },
@@ -36,22 +38,20 @@ function Home() {
   ]
 
   const handleSubmit = () => {
-    const employees = JSON.parse(localStorage.getItem('employees')) || []
     const employee = {
       firstName: firstName.current.value,
       lastName: lastName.current.value,
-      dateOfBirth: dateOfBirth.toDateString(),
-      startDate: startDate.toDateString(),
+      dateOfBirth: dateOfBirth?.toDateString(),
+      startDate: startDate?.toDateString(),
       department: department,
       street: street.current.value,
       city: city.value,
       state: state,
       zipCode: zipCode.current.value
     }
-    employees.push(employee)
-    localStorage.setItem('employees', JSON.stringify(employees))
     updateIsModalVisible(true)
     console.log(employee)
+    addEmployee(employee)
   }
 
   return (
