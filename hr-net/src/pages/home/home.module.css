@@ -2,7 +2,7 @@
     margin-bottom: 20px;
 }
 
-.createForm select {
+.select {
     box-sizing: border-box;
     background-color: #f0f0f0;
     height: 32px;
@@ -26,4 +26,9 @@
     box-sizing: border-box;
     height: 22px;
     width: 170px;
+}
+
+.customSelect {
+    height: 32px;
+    width: 230px;
 }

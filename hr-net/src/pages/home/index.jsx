@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react"
 import DatePicker from "react-date-picker"
 import "react-date-picker/dist/DatePicker.css"
 import "react-calendar/dist/Calendar.css"
+import Select from 'react-select'
 import { Link } from 'react-router-dom'
-import data from "../../data/data.json"
+import { formatsDepartmentList, formatsStates } from "../../services/dataFormatter.service"
 import Modal from "../../component/modal"
 import style from "./home.module.css"
 
@@ -11,14 +12,14 @@ import style from "./home.module.css"
 function Home() {
   const firstName = useRef(null)
   const lastName = useRef(null)
-  const department = useRef(null)
   const street = useRef(null)
   const city = useRef(null)
-  const state = useRef(null)
   const zipCode = useRef(null)
-  const [isModalVisible, updateIsModalVisible] = useState(false)
   const [startDate, setStartDate] = useState()
   const [dateOfBirth, setDateOfBirth] = useState()
+  const [state, setState] = useState()
+  const [department, setDepartment] = useState()
+  const [isModalVisible, updateIsModalVisible] = useState(false)
 
   const mainInputList = [
     { "inputId": "first-name", "label": "First Name", "type": "text", "ref": firstName },
@@ -30,26 +31,27 @@ function Home() {
   const addresseInputList = [
     { "inputId": "street", "label": "Street", "type": "text", "ref": street },
     { "inputId": "city", "label": "City", "type": "text", "ref": city },
-    { "inputId": "state", "label": "State", "type": "select", "ref": state },
+    { "inputId": "state", "label": "State", "type": "select", "ref": state, "setMethod": setState },
     { "inputId": "zip-code", "label": "Zip Code", "type": "number", "ref": zipCode }
   ]
 
   const handleSubmit = () => {
     const employees = JSON.parse(localStorage.getItem('employees')) || []
     const employee = {
-      firstName: firstName.value,
-      lastName: lastName.value,
+      firstName: firstName.current.value,
+      lastName: lastName.current.value,
       dateOfBirth: dateOfBirth,
       startDate: startDate,
-      department: department.value,
-      street: street.value,
+      department: department,
+      street: street.current.value,
       city: city.value,
-      state: state.value,
-      zipCode: zipCode.value
+      state: state,
+      zipCode: zipCode.current.value
     }
     employees.push(employee)
     localStorage.setItem('employees', JSON.stringify(employees))
     updateIsModalVisible(true)
+    console.log(employee)
   }
 
   return (
@@ -93,15 +95,13 @@ function Home() {
                   <label htmlFor={inputId}>{label}</label>
                   {type !== "select" ?
                     <input id={inputId} type={type} ref={ref} />
-                    : <select
+                    : <Select
                       name={inputId}
-                      id={inputId}>
-                      {data.states.map(({ name, abbreviation }) => (
-                        <option key={abbreviation} value={abbreviation}>
-                          {name}
-                        </option>
-                      ))}
-                    </select>
+                      id={inputId}
+                      options={formatsStates()}
+                      className={style.customSelect}
+                      onChange={(option) => setState(option)}
+                    />
                   }
                 </div>
               )
@@ -111,16 +111,13 @@ function Home() {
           <label htmlFor="department">
             Department
           </label>
-          <select
+          <Select
             name="department"
             id="department"
-            ref={department}>
-            {data.departmentList.map(({ id, name }) => (
-              <option key={id} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
+            options={formatsDepartmentList()}
+            className={style.customSelect}
+            onChange={(option) => setDepartment(option)}
+          />
         </form>
         <button onClick={handleSubmit}>Save</button>
       </main>
