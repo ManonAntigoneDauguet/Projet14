@@ -19,7 +19,6 @@ root.render(
           <Route path="/employee-list" element={<EmployeeList />} />
         </Routes>
       </EmployeeListProvider>
-
     </Router>
   </React.StrictMode>
 )

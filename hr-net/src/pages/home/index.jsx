@@ -7,7 +7,7 @@ import { EmployeeListContext } from "../../utils/context"
 // components
 import CustomSelect from "../../component/CustomSelect"
 import CustomDatePicker from "../../component/CustomDatePicker"
-import Modal from "../../component/modal"
+import { ManonModal } from "manon-projet14"
 
 
 function Home() {
@@ -114,7 +114,7 @@ function Home() {
         <button onClick={handleSubmit}>Save</button>
       </main>
       {isModalVisible &&
-        <Modal methodeOff={() => updateIsModalVisible(false)} />
+        <ManonModal text="Employee Created!" onClose={() => updateIsModalVisible(false)} />
       }
     </React.Fragment>
   )
