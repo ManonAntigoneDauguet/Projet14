@@ -1,0 +1,19 @@
+.createForm {
+    margin-bottom: 20px;
+}
+
+.createForm label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+.address {
+    margin-top: 10px;
+}
+
+.input {
+    box-sizing: border-box;
+    height: 22px;
+    width: 170px;
+}
