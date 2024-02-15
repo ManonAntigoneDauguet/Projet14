@@ -56,12 +56,12 @@ function EmployeeList() {
         <h1>Current Employees</h1>
       </header>
       <main className="container">
-        <Link to="/">Home</Link>
         <CustomTable
           columns={columns}
           // data={employeeList}
           data={mockedData.mockedUsers}
         />
+        <Link to="/">Home</Link>
       </main>
     </React.Fragment>
   )

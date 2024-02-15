@@ -1,39 +1,81 @@
+.tableContainer {
+    margin: 16px;    
+}
+
 .table {
-    margin: 32px 16px;
     border-collapse: collapse;
+    border-bottom: 1px solid black;
 }
 
 
-/************************ THEAD *********************/
+/************************ HEAD *********************/
+.head {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableSearchForm {
+    position: relative;
+    display: flex;
+    gap: 8px;
+}
+
+input[name="erase"] {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    background: url(./close.svg) no-repeat 100% 100%;
+    height: 16px;
+    width: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/************************ TABLE *********************/
 .thead th {
     padding: 8px 16px;
     border-bottom: 1px solid black;
 }
 
-
-/************************ TBODY *********************/
 .tbody td {
     padding: 8px 16px;
+    text-align: center;
+}
+
+tbody tr + tr {
+    border-top: solid 1px #ddd;
 }
 
 .evenTr {
     background-color: rgb(238, 238, 238);
 }
 
+.evenTr th {
+    background-color: rgb(218, 218, 218);
+    font-weight: normal;
+}
+
 .oddTr {
     background-color: rgb(255, 251, 247);
 }
 
+.oddTr th {
+    background-color: rgb(253, 242, 231);
+    font-weight: normal;
+}
 
-/************************ TFOOT *********************/
-.tfoot td {
-    border-top: 1px solid black;
-    padding: 8px 16px;
+
+/************************ FOOT *********************/
+.foot {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .nextAndPreviousContainer {
     display: flex;
-    justify-content: end;
     gap: 8px;
 }
 
