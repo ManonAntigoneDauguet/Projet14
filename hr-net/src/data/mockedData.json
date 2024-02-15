@@ -1,0 +1,48 @@
+{
+    "mockedUsers": [
+        {
+            "firstName": "Manon",
+            "lastName": "Dauguet",
+            "dateOfBirth": "???",
+            "startDate": "???",
+            "department": "???",
+            "street": "???",
+            "city": "???",
+            "state": "???",
+            "zipCode": "???"
+        },
+        {
+            "firstName": "Nabil",
+            "lastName": "Lahlou",
+            "dateOfBirth": "???",
+            "startDate": "???",
+            "department": "???",
+            "street": "???",
+            "city": "???",
+            "state": "???",
+            "zipCode": "???"
+        },
+        {
+            "firstName": "Martha",
+            "lastName": "Durand",
+            "dateOfBirth": "???",
+            "startDate": "???",
+            "department": "???",
+            "street": "???",
+            "city": "???",
+            "state": "???",
+            "zipCode": "???"
+        },
+        {
+            "firstName": "Julien",
+            "lastName": "Vincent",
+            "dateOfBirth": "???",
+            "startDate": "???",
+            "department": "???",
+            "street": "???",
+            "city": "???",
+            "state": "???",
+            "zipCode": "???"
+        }
+    ]
+}
