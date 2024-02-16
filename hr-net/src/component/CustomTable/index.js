@@ -11,13 +11,34 @@ import { useEffect, useRef, useState } from "react"
  */
 function CustomTable({ title, columns, data }) {
     const defaultMaxEntries = 10
-    const [displayedData, updatedisplayedData] = useState(data)
+    const [displayedData, updateDisplayedData] = useState(data)
     const [filteredData, updateFilteredData] = useState(data)
     const searchInput = useRef(null)
     const [maxEntries, updateMaxEntries] = useState(defaultMaxEntries)
     const [minIndex, updateMinIndex] = useState(0)
     const [maxIndex, updateMaxIndex] = useState(defaultMaxEntries)
     const [eraseButtonIsVisible, updateEraseButtonIsVisible] = useState(false)
+
+    // Sort features
+    const handleSort = (columnKey, isIncreasing = true) => {
+        let newFilteredData = [...filteredData].sort((a, b) => {
+            if (a[columnKey] === b[columnKey]) {
+                return 0
+            }
+            if (a[columnKey] === "" || a[columnKey] === null) {
+                return 1
+            }
+            if (b[columnKey] === "" || b[columnKey] === null) {
+                return -1
+            }
+            if (isIncreasing) {
+                return a[columnKey] < b[columnKey] ? -1 : 1
+            } else {
+                return a[columnKey] > b[columnKey] ? -1 : 1
+            }
+        })
+        updateFilteredData(newFilteredData)
+    }
 
     // Search features
     const handleSearch = () => {
@@ -50,9 +71,9 @@ function CustomTable({ title, columns, data }) {
     }
 
     useEffect(() => {
-        let newdisplayedData = filteredData.slice(minIndex, minIndex + maxEntries)
-        updatedisplayedData(newdisplayedData)
-    }, [data, filteredData, maxEntries, minIndex])
+        let newDisplayedData = filteredData.slice(minIndex, minIndex + maxEntries)
+        updateDisplayedData(newDisplayedData)
+    }, [filteredData, maxEntries, minIndex])
 
     useEffect(() => {
         (minIndex + maxEntries) > filteredData.length
@@ -60,7 +81,7 @@ function CustomTable({ title, columns, data }) {
             : updateMaxIndex(minIndex + maxEntries)
     }, [filteredData.length, maxEntries, minIndex])
 
-    
+
     return (
         <div className={style.tableContainer}>
             <div className={style.head}>
@@ -106,7 +127,15 @@ function CustomTable({ title, columns, data }) {
                 <thead className={style.thead}>
                     <tr>
                         {columns.map(({ name, key }, index) => (
-                            <th key={`column-${index}-${key}`} scope="col">{name}</th>
+                            <th key={`column-${index}-${key}`} scope="col">
+                                <div className={style.columnNameContainer}>
+                                    {name}
+                                    <div className={style.arrowsContainer}>
+                                        <button className={style.arrowUp} onClick={() => handleSort(key, true)}><div></div></button>
+                                        <button className={style.arrowDown} onClick={() => handleSort(key, false)}><div></div></button>
+                                    </div>
+                                </div>
+                            </th>
                         ))}
                     </tr>
                 </thead>

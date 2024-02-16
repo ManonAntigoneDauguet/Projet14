@@ -41,6 +41,10 @@ input[name="erase"] {
     border-bottom: 1px solid black;
 }
 
+.columnNameContainer {
+    display: flex;
+}
+
 .tbody td {
     padding: 8px 16px;
     text-align: center;
@@ -66,6 +70,42 @@ tbody tr + tr {
 .oddTr th {
     background-color: rgb(253, 242, 231);
     font-weight: normal;
+}
+
+.arrowsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.arrowUp, .arrowDown {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.arrowUp:active, .arrowDown:active {
+    transform: scale(0.5);
+}
+
+.arrowUp div, .arrowDown div {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+
+.arrowUp div {
+    border-bottom: 4px solid gray;
+}
+
+.arrowDown div {
+    border-top: 4px solid gray;
 }
 
 
