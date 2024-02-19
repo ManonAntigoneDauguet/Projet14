@@ -41,8 +41,8 @@ function Home() {
     const employee = {
       firstName: firstName.current.value,
       lastName: lastName.current.value,
-      dateOfBirth: dateOfBirth?.toDateString(),
-      startDate: startDate?.toDateString(),
+      dateOfBirth: new Date(dateOfBirth),
+      startDate: new Date(startDate),
       department: department,
       street: street.current.value,
       city: city.value,

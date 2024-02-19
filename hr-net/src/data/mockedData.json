@@ -1,0 +1,136 @@
+{
+    "mockedUsers": [
+        {
+            "firstName": "Manon",
+            "lastName": "Dauguet",
+            "dateOfBirth": "14/11/1994",
+            "startDate": "01/05/2023",
+            "department": "Engineering",
+            "street": "Golden dragon",
+            "city": "Orlando",
+            "state": "Florida",
+            "zipCode": "123"
+        },
+        {
+            "firstName": "Nabil",
+            "lastName": "Lahlou",
+            "dateOfBirth": "26/10/1989",
+            "startDate": "15/02/2024",
+            "department": "Engineering",
+            "street": "Golden dragon",
+            "city": "Orlando",
+            "state": "Florida",
+            "zipCode": "123"
+        },
+        {
+            "firstName": "Martha",
+            "lastName": "Durand",
+            "dateOfBirth": "26/10/1995",
+            "startDate": "08/16/2024",
+            "department": "Marketing",
+            "street": "Unicorn",
+            "city": "New York",
+            "state": "New York",
+            "zipCode": "456"
+        },
+        {
+            "firstName": "Julien",
+            "lastName": "Vincent",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "Celestian rabbit",
+            "city": "Sacramento",
+            "state": "California",
+            "zipCode": "789"
+        },
+        {
+            "firstName": "Margot",
+            "lastName": "Dauguet",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "Legal",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Nathalie",
+            "lastName": "Lahlou",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Rowenna",
+            "lastName": "Ravenclaw",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Helga",
+            "lastName": "Hufflepuff",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Godric",
+            "lastName": "Gryffindor",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Salazar",
+            "lastName": "Slytherin",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Albus",
+            "lastName": "Dumbledore",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        },
+        {
+            "firstName": "Minerva",
+            "lastName": "McGonagall",
+            "dateOfBirth": "",
+            "startDate": "",
+            "department": "",
+            "street": "",
+            "city": "",
+            "state": "",
+            "zipCode": ""
+        }
+    ]
+}
