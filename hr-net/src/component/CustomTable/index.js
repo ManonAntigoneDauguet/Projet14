@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 /**
  * 
  * @param { String } [title]
- * @param { Array.<{name: String, key: String}> } columns
+ * @param { Array.<{name: String, key: String, date: Boolean}> } columns
  * @param { Array.<Object> } data
  * @returns { HTMLElement }
  */
@@ -18,6 +18,14 @@ function CustomTable({ title, columns, data }) {
     const [minIndex, updateMinIndex] = useState(0)
     const [maxIndex, updateMaxIndex] = useState(defaultMaxEntries)
     const [eraseButtonIsVisible, updateEraseButtonIsVisible] = useState(false)
+
+    const displayDate = (date) => {
+        try {
+            return date.toLocaleDateString('en-us')
+        } catch {
+            return date
+        }
+    }
 
     // Sort features
     const handleSort = (columnKey, isIncreasing = true) => {
@@ -142,13 +150,13 @@ function CustomTable({ title, columns, data }) {
                 <tbody className={style.tbody}>
                     {displayedData.map((employee, employeeIndex) => (
                         <tr key={`row-${employeeIndex}`} className={employeeIndex % 2 ? style.evenTr : style.oddTr}>
-                            {columns.map(({ key }, columnIndex) => (
+                            {columns.map(({ key, date }, columnIndex) => (
                                 columnIndex === 0 ?
                                     <th key={`${employeeIndex}-${key}`}>
-                                        {employee[key]}
+                                        {date ? displayDate(employee[key]) : employee[key]}
                                     </th> :
                                     <td key={`${employeeIndex}-${key}`}>
-                                        {employee[key]}
+                                        {date ? displayDate(employee[key]) : employee[key]}
                                     </td>
                             ))}
                         </tr>

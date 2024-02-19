@@ -1,9 +1,7 @@
 import React, { useContext } from "react"
-import style from "./employeeList.module.css"
 import { Link } from 'react-router-dom'
 // data
 import { EmployeeListContext } from "../../utils/context"
-import mockedData from "../../data/mockedData.json"
 // components
 import CustomTable from "../../component/CustomTable"
 
@@ -22,7 +20,8 @@ function EmployeeList() {
     },
     {
       "key": "startDate",
-      "name": "Start Date"
+      "name": "Start Date",
+      "date": true
     },
     {
       "key": "department",
@@ -30,7 +29,8 @@ function EmployeeList() {
     },
     {
       "key": "dateOfBirth",
-      "name": "Date of Birth"
+      "name": "Date of Birth",
+      "date": true
     },
     {
       "key": "street",
@@ -58,8 +58,7 @@ function EmployeeList() {
       <main className="container">
         <CustomTable
           columns={columns}
-          // data={employeeList}
-          data={mockedData.mockedUsers}
+          data={employeeList}
         />
         <Link to="/">Home</Link>
       </main>
