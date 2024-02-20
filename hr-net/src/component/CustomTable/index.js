@@ -139,8 +139,20 @@ function CustomTable({ title, columns, data }) {
                                 <div className={style.columnNameContainer}>
                                     {name}
                                     <div className={style.arrowsContainer}>
-                                        <button className={style.arrowUp} onClick={() => handleSort(key, true)}><div></div></button>
-                                        <button className={style.arrowDown} onClick={() => handleSort(key, false)}><div></div></button>
+                                        <div className={`${style.arrow} ${style.arrowUp}`}>
+                                            <input
+                                                type="button"
+                                                aria-label="sort in ascending order"
+                                                onClick={() => handleSort(key, true)}
+                                            />
+                                        </div>
+                                        <div className={`${style.arrow} ${style.arrowDown}`}>
+                                            <input
+                                                type="button"
+                                                aria-label="sort in descending order"
+                                                onClick={() => handleSort(key, false)}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </th>

@@ -43,6 +43,7 @@ input[name="erase"] {
 
 .columnNameContainer {
     display: flex;
+    gap: 4px;
 }
 
 .tbody td {
@@ -50,7 +51,7 @@ input[name="erase"] {
     text-align: center;
 }
 
-tbody tr + tr {
+tbody tr+tr {
     border-top: solid 1px #ddd;
 }
 
@@ -80,32 +81,43 @@ tbody tr + tr {
     gap: 2px;
 }
 
-.arrowUp, .arrowDown {
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
+.arrow {
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     transform: scale(1);
 }
 
-.arrowUp:active, .arrowDown:active {
+.arrow:active {
     transform: scale(0.5);
 }
 
-.arrowUp div, .arrowDown div {
+.arrow input {
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none; 
+    cursor: pointer;    
+    opacity: 0;
+    height: 8px;
+}
+
+.arrow:after {
+    content: "";
     width: 0; 
     height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
+    display: block;
+    border-left: 4.5px solid transparent;
+    border-right: 4.5px solid transparent;
 }
 
-.arrowUp div {
-    border-bottom: 4px solid gray;
+.arrowUp:after {
+    border-bottom: 7.8px solid gray;
 }
 
-.arrowDown div {
-    border-top: 4px solid gray;
+.arrowDown:after {
+    border-top: 7.8px solid gray;
 }
 
 
