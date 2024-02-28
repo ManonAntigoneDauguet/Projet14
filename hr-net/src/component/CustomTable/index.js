@@ -3,7 +3,7 @@ import style from "./customTable.module.css"
 import { useEffect, useRef, useState } from "react"
 
 /**
- * 
+ * Return a dynamic table
  * @param { String } [title]
  * @param { Array.<{name: String, key: String, date: Boolean}> } columns
  * @param { Array.<Object> } data
@@ -54,14 +54,14 @@ function CustomTable({ title, columns, data }) {
         searchRequest.length === 0 ? updateEraseButtonIsVisible(false) : updateEraseButtonIsVisible(true)
         let newFilteredData = []
         for (let employee of data) {
-            let filteredEmployee = false
+            let isFilteredEmployee = false
             columns.map(({ key }) => {
                 if (employee[key].toLowerCase().indexOf(searchRequest) !== -1) {
-                    filteredEmployee = true
+                    isFilteredEmployee = true
                     return
                 }
             })
-            filteredEmployee && newFilteredData.push(employee)
+            isFilteredEmployee && newFilteredData.push(employee)
         }
         updateFilteredData(newFilteredData)
     }
