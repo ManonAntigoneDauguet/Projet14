@@ -8,7 +8,7 @@ The HRnet application allows to create and view different employees in a dynamic
 
 Open a terminal and go to the hr-net folder. 
 The `npm install` command will allow you to install the dependencies.
-The `npm star` command will allow to run the app in the development mode.
+The `npm start` command will allow to run the app in the development mode.
 
 **Note about the mocked data**
 The project has mocked data to simulate a employee list already created.
