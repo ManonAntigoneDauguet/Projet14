@@ -8,7 +8,7 @@ import "react-calendar/dist/Calendar.css"
  * Return a cursomized Date Picker component of React-Date-Picker
  * @param { Object } value
  * @param { Function } setValue as onChange method
- * @returns 
+ * @returns { HTMLElement }
  */
 function CustomDatePicker({value, setValue}) {
     return (
