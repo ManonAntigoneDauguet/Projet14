@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
 import style from "./customTable.module.css"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
+
 
 /**
  * Return a dynamic table
@@ -19,6 +20,12 @@ function CustomTable({ title, columns, data }) {
     const [maxIndex, updateMaxIndex] = useState(defaultMaxEntries)
     const [eraseButtonIsVisible, updateEraseButtonIsVisible] = useState(false)
 
+
+    /**
+     * Display a data declared as a date in the good format (string) if is available
+     * @param { Object | String } date 
+     * @returns { String | Object }
+     */
     const displayDate = (date) => {
         try {
             return date.toLocaleDateString('en-us')
@@ -27,8 +34,14 @@ function CustomTable({ title, columns, data }) {
         }
     }
 
-    // Sort features
-    const handleSort = (columnKey, isIncreasing = true) => {
+
+    /**
+     * Sort feature
+     * Allow to sort the entries by increasing ou decreasing order by changing the filteredData state
+     * @param { String } columnKey 
+     * @param { Bollean } [isIncreasing] 
+     */
+    const handleSort = useCallback((columnKey, isIncreasing = true) => {
         let newFilteredData = [...filteredData].sort((a, b) => {
             if (a[columnKey] === b[columnKey]) {
                 return 0
@@ -46,44 +59,55 @@ function CustomTable({ title, columns, data }) {
             }
         })
         updateFilteredData(newFilteredData)
-    }
+    }, [filteredData])
 
-    // Search features
-    const handleSearch = () => {
+
+    /**
+     * Search feature
+     * Allow to filter the entries according to the user's request by changing the filteredData state
+     */
+    const handleSearch = useCallback(() => {
         const searchRequest = searchInput.current.value.toLowerCase()
-        searchRequest.length === 0 ? updateEraseButtonIsVisible(false) : updateEraseButtonIsVisible(true)
-        let newFilteredData = []
-        for (let employee of data) {
-            let isFilteredEmployee = false
-            columns.map(({ key }) => {
-                if (employee[key].toLowerCase().indexOf(searchRequest) !== -1) {
-                    isFilteredEmployee = true
-                    return
-                }
+        updateEraseButtonIsVisible(searchRequest.length !== 0)
+        const newFilteredData = data.filter(employee => {
+            return columns.some(({ key }) => {
+                const value = employee[key].toString().toLowerCase();
+                return value.includes(searchRequest);
             })
-            isFilteredEmployee && newFilteredData.push(employee)
-        }
+        })
         updateFilteredData(newFilteredData)
-    }
+    }, [columns, data])
 
-    const erase = () => {
+
+    /**
+     * Search feature
+     * Allow to erase the user's request and reboot the filteredData state
+     */
+    const erase = useCallback(() => {
         searchInput.current.value = ""
         updateEraseButtonIsVisible(false)
         updateFilteredData(data)
-    }
+    }, [data])
 
-    // Show entries features
+
+    /**
+     * Allow to change the number of showed entries
+     */
     const handleChangeEntries = (e) => {
         updateMinIndex(0)
         updateMaxEntries(parseInt(e.target.value))
     }
 
+
     useEffect(() => {
+        // Display a part of the filtered data
         let newDisplayedData = filteredData.slice(minIndex, minIndex + maxEntries)
         updateDisplayedData(newDisplayedData)
     }, [filteredData, maxEntries, minIndex])
 
+    
     useEffect(() => {
+        // Update the display of the number of entries displayed at the foot of the table
         (minIndex + maxEntries) > filteredData.length
             ? updateMaxIndex(filteredData.length)
             : updateMaxIndex(minIndex + maxEntries)

@@ -43,10 +43,10 @@ function Home() {
       lastName: lastName.current.value,
       dateOfBirth: new Date(dateOfBirth),
       startDate: new Date(startDate),
-      department: department,
+      department: department?.label,
       street: street.current.value,
       city: city.value,
-      state: state,
+      state: state?.value,
       zipCode: zipCode.current.value
     }
     updateIsModalVisible(true)
